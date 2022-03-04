@@ -61,9 +61,9 @@ int main() {
     string srcAtt = "";
     string srcVal = "";
     cout << "Input source attribute: ";
-    cin >> srcAtt;
+    getline(cin, srcAtt);
     cout << "Input source value: ";
-    cin >> srcVal;
+    getline(cin, srcVal);
     cout << endl;
     AttValPair src(srcAtt, srcVal);
     vector<AttValPair> compPairs = at.FindCompatibleAttValPairs(src);
