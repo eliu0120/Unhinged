@@ -51,6 +51,10 @@ int main() {
         p.GetAttVal(i, av);
         cout << av.attribute << "->" << av.value << endl;
     }
+    cout << endl;
+
+    AttributeTranslator at;
+    // at.load("test.txt");
 }
 
 /*
