@@ -1,5 +1,5 @@
 #ifndef RADIX_TREE
-#define RADIS_TREE
+#define RADIX_TREE
 
 #include <map>
 #include <vector>
@@ -34,7 +34,7 @@ void RadixTree<ValueType>::insert(string key, const ValueType& value) {
 
 template <typename ValueType>
 ValueType* RadixTree<ValueType>::search(string key) {
-    map<string, ValueType>::iterator it = m_map.find(key);
+    typename map<string, ValueType>::iterator it = m_map.find(key);
     if (it == m_map.end())
         return nullptr;
     return &it->second;

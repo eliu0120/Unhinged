@@ -30,6 +30,27 @@ int main() {
     result = rt.search("Kyle");
     if (result == nullptr)
         cout << "Nope" << endl;
+    cout << endl;
+
+    PersonProfile p("Eric", "eliu0120@gmail.com");
+    AttValPair attVal1("Hobby", "Gameing");
+    AttValPair attVal2("Hobby", "Hiking");
+    p.AddAttValPair(attVal1);
+    p.AddAttValPair(attVal2);
+    AttValPair attVal3("Occupation", "student");
+    AttValPair attVal4("Gender", "male");
+    p.AddAttValPair(attVal3);
+    p.AddAttValPair(attVal4);
+    p.dump("Hobby");
+    cout << endl;
+    p.dump("Occupation");
+    p.dump("Gender");
+    cout << endl;
+    for (int i = 0; i < p.GetNumAttValPairs(); i++) {
+        AttValPair av;
+        p.GetAttVal(i, av);
+        cout << av.attribute << "->" << av.value << endl;
+    }
 }
 
 /*
