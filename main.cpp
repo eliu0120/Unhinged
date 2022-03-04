@@ -14,8 +14,10 @@ const std::string TRANSLATOR_FILE = "translator.txt";
 
 bool findMatches(const MemberDatabase &mdb, const AttributeTranslator &at);
 
-#include "RadixTree.h"
+// #include "RadixTree.h"
+#include "utility.h"
 int main() {
+    /*
     RadixTree<vector<string>> rt;
     vector<string> v = {"CS", "Gameing"};
     rt.insert("Eric", v);
@@ -51,10 +53,22 @@ int main() {
         p.GetAttVal(i, av);
         cout << av.attribute << "->" << av.value << endl;
     }
-    cout << endl;
+    cout << endl; */
 
     AttributeTranslator at;
     // at.load("test.txt");
+    at.load("translator.txt");
+    string srcAtt = "";
+    string srcVal = "";
+    cout << "Input source attribute: ";
+    cin >> srcAtt;
+    cout << "Input source value: ";
+    cin >> srcVal;
+    cout << endl;
+    AttValPair src(srcAtt, srcVal);
+    vector<AttValPair> compPairs = at.FindCompatibleAttValPairs(src);
+    for (int i = 0; i < compPairs.size(); i++)
+        cout << structToString(compPairs[i]) << endl;
 }
 
 /*

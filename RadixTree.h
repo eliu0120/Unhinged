@@ -12,7 +12,7 @@ class RadixTree {
         RadixTree();
         ~RadixTree();
         void insert(string key, const ValueType& value);
-        ValueType* search(string key);
+        ValueType* search(string key); // Add const later with real RadixTree  design
     private:
         map<string, ValueType> m_map; // Fake design
 };
