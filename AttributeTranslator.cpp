@@ -2,11 +2,11 @@
 #include "RadixTree.h"
 #include "provided.h"
 #include "utility.h"
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <string>
+// #include <iostream>
 using namespace std;
 
 AttributeTranslator::AttributeTranslator() {

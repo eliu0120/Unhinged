@@ -10,6 +10,7 @@ struct AttValPair;
 
 class PersonProfile {
     public:
+        PersonProfile(); // Only for fake radix tree - remove when finished with real tree
         PersonProfile(string name, string email);
         ~PersonProfile();
         string GetName() const;
@@ -17,7 +18,7 @@ class PersonProfile {
         void AddAttValPair(const AttValPair& attval);
         int GetNumAttValPairs() const;
         bool GetAttVal(int attribute_num, AttValPair& attval) const;
-        void dump(string key); // delete later
+        // void dump(string key); // delete later
     private:    
         string m_name;
         string m_email;

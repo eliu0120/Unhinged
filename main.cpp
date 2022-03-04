@@ -55,6 +55,7 @@ int main() {
     }
     cout << endl; */
 
+    /*
     AttributeTranslator at;
     // at.load("test.txt");
     at.load("translator.txt");
@@ -68,7 +69,24 @@ int main() {
     AttValPair src(srcAtt, srcVal);
     vector<AttValPair> compPairs = at.FindCompatibleAttValPairs(src);
     for (int i = 0; i < compPairs.size(); i++)
-        cout << structToString(compPairs[i]) << endl;
+        cout << structToString(compPairs[i]) << endl; */
+
+    MemberDatabase md;
+    md.LoadDatabase("testMembers.txt");
+    string att = "";
+    string val = "";
+    cout << "Input attribute: ";
+    getline(cin, att);
+    cout << "Input value: ";
+    getline(cin, val);
+    AttValPair pair(att, val);
+    vector<string> emails = md.FindMatchingMembers(pair);
+    for (int i = 0; i < emails.size(); i++)
+        cout << emails[i] << endl;
+    cout << emails.size() << endl;
+
+    const PersonProfile* pp = md.GetMemberByEmail("AbFow2483@charter.net");
+    cout << pp->GetEmail() << " " << pp->GetName() << endl;
 }
 
 /*

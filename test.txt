@@ -1,4 +1,1 @@
-job,salesperson,hobby,poetry
-favorite_food,del taco,favorite_food,mexican
-trait,transparent,trait,transparent
-job,chef,hobby,eating
+hobby,video games,hobby,cycling
