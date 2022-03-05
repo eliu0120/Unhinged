@@ -8,6 +8,7 @@
 #include <vector>
 #include <unordered_set>
 #include <unordered_map>
+#include <algorithm>
 using namespace std;
 
 MatchMaker::MatchMaker(MemberDatabase& mdb, AttributeTranslator& at) { // Add const to parameters later
@@ -19,7 +20,6 @@ MatchMaker::~MatchMaker() {
 
 }
 
-#include <iostream>
 vector<EmailCount> MatchMaker::IdentifyRankedMatches(string email, int threshold) { // Add const later
     const PersonProfile* pp = m_md->GetMemberByEmail(email);
     AttValPair avp;
@@ -43,7 +43,7 @@ vector<EmailCount> MatchMaker::IdentifyRankedMatches(string email, int threshold
         vector<string> matches = m_md->FindMatchingMembers(avp2);
         for (int j = 0; j < matches.size(); j++)
             if (uniqueEmails.find(matches[j]) == uniqueEmails.end())
-                uniqueEmails.insert(pair<string, int>(matches[j], 1));
+                uniqueEmails[matches[j]] = 1;
             else
                 uniqueEmails[matches[j]]++;
     }
@@ -54,5 +54,6 @@ vector<EmailCount> MatchMaker::IdentifyRankedMatches(string email, int threshold
             ECs.push_back(ec);
         }
     }
+    sort(ECs.begin(), ECs.end(), compareEmailCounts);
     return ECs;
 }
