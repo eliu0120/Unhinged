@@ -29,7 +29,7 @@ RadixTree<ValueType>::~RadixTree() {
 
 template <typename ValueType>
 void RadixTree<ValueType>::insert(string key, const ValueType& value) {
-    m_map[key] = value;
+    m_map.insert(pair<string, ValueType>(key, value));
 }
 
 template <typename ValueType>

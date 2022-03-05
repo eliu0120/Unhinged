@@ -12,12 +12,13 @@
 const std::string MEMBERS_FILE = "members.txt";
 const std::string TRANSLATOR_FILE = "translator.txt";
 
-bool findMatches(const MemberDatabase &mdb, const AttributeTranslator &at);
+bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
+
 
 // #include "RadixTree.h"
+/*
 #include "utility.h"
 int main() {
-    /*
     RadixTree<vector<string>> rt;
     vector<string> v = {"CS", "Gameing"};
     rt.insert("Eric", v);
@@ -53,9 +54,8 @@ int main() {
         p.GetAttVal(i, av);
         cout << av.attribute << "->" << av.value << endl;
     }
-    cout << endl; */
+    cout << endl;
 
-    /*
     AttributeTranslator at;
     // at.load("test.txt");
     at.load("translator.txt");
@@ -69,7 +69,7 @@ int main() {
     AttValPair src(srcAtt, srcVal);
     vector<AttValPair> compPairs = at.FindCompatibleAttValPairs(src);
     for (int i = 0; i < compPairs.size(); i++)
-        cout << structToString(compPairs[i]) << endl; */
+        cout << structToString(compPairs[i]) << endl;
 
     MemberDatabase md;
     md.LoadDatabase("testMembers.txt");
@@ -87,9 +87,16 @@ int main() {
 
     const PersonProfile* pp = md.GetMemberByEmail("AbFow2483@charter.net");
     cout << pp->GetEmail() << " " << pp->GetName() << endl;
-}
 
-/*
+    MemberDatabase mdb;
+    AttributeTranslator at;
+    mdb.LoadDatabase(MEMBERS_FILE);
+    at.load(TRANSLATOR_FILE);
+    MatchMaker m(mdb, at);
+    m.IdentifyRankedMatches("AbFow2483@charter.net", 0);
+} */
+
+
 int main()
 {
     MemberDatabase mdb;
@@ -111,7 +118,7 @@ int main()
     std::cout << "Happy dating!" << std::endl;
 }
 
-bool findMatches(const MemberDatabase &mdb, const AttributeTranslator &at)
+bool findMatches(MemberDatabase &mdb, AttributeTranslator &at) // add const to parameters later
 {
     // Prompt for email
     std::string email;
@@ -162,4 +169,3 @@ bool findMatches(const MemberDatabase &mdb, const AttributeTranslator &at)
     std::cout << std::endl;
     return true;
 }
-*/

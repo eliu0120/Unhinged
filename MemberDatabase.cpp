@@ -31,18 +31,14 @@ bool MemberDatabase::LoadDatabase(string filename) {
             if (linePos == 1) {
                 name = line;
                 linePos++;
-                continue;
             } else if (linePos == 2) {
                 email = line;
                 linePos++;
-                continue;
             } else if (linePos == 3) {
                 stringstream ss;
                 ss << line;
                 ss >> numPairs;
-                // cout << numPairs << endl;
                 linePos++;
-                continue;
             } else if (linePos < numPairs + 4) {
                 commaPos = line.find(",");
                 attribute = line.substr(0, commaPos);
@@ -54,14 +50,13 @@ bool MemberDatabase::LoadDatabase(string filename) {
                 if (values != nullptr && compareValues(email, *values)) {
                     linePos++;
                     continue;
-                } else if (values != nullptr)
+                } else if (values != nullptr) {
                     (*values).push_back(email);
-                else {
+                } else {
                     vector<string> v = {email};
                     m_pairToEmail.insert(avpstr, v);
                 }
                 linePos++;
-                continue;
             } else {
                 PersonProfile p(name, email);
                 for (int i = 0; i < pairs.size(); ) {

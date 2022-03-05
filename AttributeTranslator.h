@@ -12,7 +12,7 @@ class AttributeTranslator {
     public:
         AttributeTranslator();
         ~AttributeTranslator();
-        bool load(string filename);
+        bool Load(string filename);
         vector<AttValPair> FindCompatibleAttValPairs(const AttValPair& source); // Re-add const later
     private:
         RadixTree<vector<AttValPair>> m_sourceToCompatible;

@@ -10,7 +10,6 @@ struct AttValPair;
 
 class PersonProfile {
     public:
-        PersonProfile(); // Only for fake radix tree - remove when finished with real tree
         PersonProfile(string name, string email);
         ~PersonProfile();
         string GetName() const;

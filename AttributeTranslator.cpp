@@ -17,7 +17,7 @@ AttributeTranslator::~AttributeTranslator() {
 
 }
 
-bool AttributeTranslator::load(string filename) {
+bool AttributeTranslator::Load(string filename) {
     ifstream file(filename.c_str());
     if (file.is_open()) {
         string line = "";

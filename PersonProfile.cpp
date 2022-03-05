@@ -7,12 +7,6 @@
 #include <vector>
 using namespace std;
 
-PersonProfile::PersonProfile() { // Only for fake radix tree - remove when finished with real tree
-    m_name = "";
-    m_email = "";
-    m_numAttValPairs = 0;
-}
-
 PersonProfile::PersonProfile(string name, string email) {
     m_name = name;
     m_email = email;
