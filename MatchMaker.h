@@ -14,7 +14,7 @@ class MatchMaker {
     public:
         MatchMaker(MemberDatabase& mdb, AttributeTranslator& at); // Add const to parameters later
         ~MatchMaker();
-        vector<EmailCount> IdentifyRankedMatches(string email, int threshold); // Add const later
+        vector<EmailCount> IdentifyRankedMatches(string email, int threshold) const; // Add const later
     private:
         MemberDatabase* m_md;
         AttributeTranslator* m_at;

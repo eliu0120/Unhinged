@@ -13,7 +13,10 @@ MemberDatabase::MemberDatabase() {
 }
 
 MemberDatabase::~MemberDatabase() {
-
+    while (m_profiles.size() > 0) {
+        delete m_profiles[0];
+        m_profiles.erase(m_profiles.begin());
+    }
 }
 
 bool MemberDatabase::LoadDatabase(string filename) {
@@ -53,16 +56,18 @@ bool MemberDatabase::LoadDatabase(string filename) {
                 } else if (values != nullptr) {
                     (*values).push_back(email);
                 } else {
-                    vector<string> v = {email};
+                    vector<string> v;
+                    v.push_back(email);
                     m_pairToEmail.insert(avpstr, v);
                 }
                 linePos++;
             } else {
-                PersonProfile p(name, email);
+                PersonProfile* p = new PersonProfile(name, email);
                 for (int i = 0; i < pairs.size(); ) {
-                    p.AddAttValPair(pairs[i]);
+                    p->AddAttValPair(pairs[i]);
                     pairs.erase(pairs.begin());
                 }
+                m_profiles.push_back(p);
                 if (m_emailToProfile.search(email) != nullptr)
                     return false;
                 m_emailToProfile.insert(email, p);
@@ -75,7 +80,7 @@ bool MemberDatabase::LoadDatabase(string filename) {
     return false;
 }
 
-vector<string> MemberDatabase::FindMatchingMembers(const AttValPair& input) {
+vector<string> MemberDatabase::FindMatchingMembers(const AttValPair& input) const {
     string avpstr = structToString(input);
     vector<string>* members = m_pairToEmail.search(avpstr);
     if (members == nullptr) {
@@ -85,6 +90,6 @@ vector<string> MemberDatabase::FindMatchingMembers(const AttValPair& input) {
     return *members;
 }
 
-const PersonProfile* MemberDatabase::GetMemberByEmail(string email) {
-    return m_emailToProfile.search(email);
+const PersonProfile* MemberDatabase::GetMemberByEmail(string email) const {
+    return *m_emailToProfile.search(email);
 }

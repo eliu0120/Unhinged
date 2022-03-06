@@ -48,7 +48,7 @@ bool AttributeTranslator::Load(string filename) {
     return false;
 }
 
-vector<AttValPair> AttributeTranslator::FindCompatibleAttValPairs(const AttValPair& source) { // Re-add const later
+vector<AttValPair> AttributeTranslator::FindCompatibleAttValPairs(const AttValPair& source) const { // Re-add const later
     string src = structToString(source);
     vector<AttValPair>* values = m_sourceToCompatible.search(src);
     if (values == nullptr) {

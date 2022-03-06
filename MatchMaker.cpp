@@ -20,7 +20,7 @@ MatchMaker::~MatchMaker() {
 
 }
 
-vector<EmailCount> MatchMaker::IdentifyRankedMatches(string email, int threshold) { // Add const later
+vector<EmailCount> MatchMaker::IdentifyRankedMatches(string email, int threshold) const { // Add const later
     const PersonProfile* pp = m_md->GetMemberByEmail(email);
     AttValPair avp;
     int i = 0;

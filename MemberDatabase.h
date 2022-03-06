@@ -14,11 +14,12 @@ class MemberDatabase {
         MemberDatabase();
         ~MemberDatabase();
         bool LoadDatabase(string filename);
-        vector<string> FindMatchingMembers(const AttValPair& input); // Add const later
-        const PersonProfile* GetMemberByEmail(string email); // Add const later
+        vector<string> FindMatchingMembers(const AttValPair& input) const; // Add const later
+        const PersonProfile* GetMemberByEmail(string email) const; // Add const later
     private:
         RadixTree<vector<string>> m_pairToEmail;
-        RadixTree<PersonProfile> m_emailToProfile;
+        RadixTree<PersonProfile*> m_emailToProfile;
+        vector<PersonProfile*> m_profiles;
 };
 
 #endif
