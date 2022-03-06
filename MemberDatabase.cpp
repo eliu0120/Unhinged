@@ -91,5 +91,8 @@ vector<string> MemberDatabase::FindMatchingMembers(const AttValPair& input) cons
 }
 
 const PersonProfile* MemberDatabase::GetMemberByEmail(string email) const {
-    return *m_emailToProfile.search(email);
+    PersonProfile** pp = m_emailToProfile.search(email);
+    if (pp == nullptr)
+        return nullptr;
+    return *pp;
 }
