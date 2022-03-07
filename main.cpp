@@ -69,7 +69,7 @@ bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
 
     /*
     MemberDatabase md;
-    md.LoadDatabase("members.txt"); 
+    md.LoadDatabase("testMembers.txt"); 
     string att = "";
     string val = "";
     cout << "Input attribute: ";
@@ -80,8 +80,8 @@ bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
     vector<string> emails = md.FindMatchingMembers(pair);
     for (int i = 0; i < emails.size(); i++)
         cout << emails[i] << endl;
-    cout << emails.size() << endl;
-
+    cout << emails.size() << endl; */
+    /*
     const PersonProfile* pp = md.GetMemberByEmail("AbFow2483@charter.net");
     cout << pp->GetEmail() << " " << pp->GetName() << endl; */
 
@@ -112,7 +112,7 @@ int main() {
         ;
 
     std::cout << "Happy dating!" << std::endl;
-}
+} 
 
 bool findMatches(MemberDatabase &mdb, AttributeTranslator &at) // add const to parameters later
 {

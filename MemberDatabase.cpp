@@ -4,7 +4,6 @@
 #include "utility.h"
 #include "PersonProfile.h"
 #include <fstream>
-#include <sstream>
 #include <string>
 using namespace std;
 
@@ -31,16 +30,17 @@ bool MemberDatabase::LoadDatabase(string filename) {
         int linePos = 1, numPairs = 0, commaPos = 0;
         vector<AttValPair> pairs;
         while (getline(file, line)) {
-            if (linePos == 1) {
+            if (linePos == 0) {
+                linePos++;
+                continue;
+            } else if (linePos == 1) {
                 name = line;
                 linePos++;
             } else if (linePos == 2) {
                 email = line;
                 linePos++;
             } else if (linePos == 3) {
-                stringstream ss;
-                ss << line;
-                ss >> numPairs;
+                numPairs = stoi(line);
                 linePos++;
             } else if (linePos < numPairs + 4) {
                 commaPos = line.find(",");
@@ -50,18 +50,16 @@ bool MemberDatabase::LoadDatabase(string filename) {
                 pairs.push_back(avp);
                 avpstr = structToString(avp);
                 vector<string>* values = m_pairToEmail.search(avpstr);
-                if (values != nullptr && compareValues(email, *values)) {
-                    linePos++;
-                    continue;
-                } else if (values != nullptr) {
+                if (values != nullptr && !compareValues(email, *values)) {
                     (*values).push_back(email);
-                } else {
+                } else if (values == nullptr) {
                     vector<string> v;
                     v.push_back(email);
                     m_pairToEmail.insert(avpstr, v);
                 }
                 linePos++;
-            } else {
+            } 
+            if (linePos == numPairs + 4) {
                 PersonProfile* p = new PersonProfile(name, email);
                 for (int i = 0; i < pairs.size(); ) {
                     p->AddAttValPair(pairs[i]);
@@ -71,7 +69,7 @@ bool MemberDatabase::LoadDatabase(string filename) {
                 if (m_emailToProfile.search(email) != nullptr)
                     return false;
                 m_emailToProfile.insert(email, p);
-                linePos = 1;
+                linePos = 0;
                 numPairs = 0;
             }
         }
