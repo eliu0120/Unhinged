@@ -3,10 +3,8 @@
 #include "provided.h"
 #include "utility.h"
 #include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
-// #include <iostream>
 using namespace std;
 
 AttributeTranslator::AttributeTranslator() {
@@ -41,7 +39,6 @@ bool AttributeTranslator::Load(string filename) {
                 vector<AttValPair> v = {compatiblePair};
                 m_sourceToCompatible.insert(source, v);
             }
-            // cout << source << endl << compatible_att << endl << compatible_value << endl; // testing only
         }
         return true;
     }

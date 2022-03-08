@@ -2,7 +2,6 @@
 #include "RadixTree.h"
 #include "utility.h"
 #include "provided.h"
-#include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
@@ -51,6 +50,7 @@ bool PersonProfile::GetAttVal(int attribute_num, AttValPair& attval) const {
 }
 
 /*
+#include <iostream>
 void PersonProfile::dump(string key) {
     vector<string>* values = m_AttToVal.search(key);
     for (int i = 0; i < (*values).size(); i++)
