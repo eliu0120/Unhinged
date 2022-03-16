@@ -1,7 +1,6 @@
 #ifndef RADIX_TREE
 #define RADIX_TREE
 
-#include <map>
 #include <string>
 using namespace std;
 

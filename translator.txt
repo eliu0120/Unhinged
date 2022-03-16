@@ -4,6 +4,7 @@ job,writer,job,janitor
 trait,regretful,job,curator
 trait,anxious,hobby,hiking
 job,psychologist,job,chef
+
 job,salesperson,hobby,poetry
 trait,meretricious,hobby,improv
 job,writer,hobby,sewing
@@ -12,6 +13,7 @@ trait,ungrateful,trait,excitable
 hobby,video games,hobby,cycling
 job,janitor,hobby,golfing
 hobby,mixology,job,lawyer
+
 job,retired,trait,small-thinking
 hobby,improv,trait,cultured
 job,editor,hobby,paintball
@@ -20,6 +22,7 @@ job,accountant,job,historian
 trait,disruptive,trait,rotund
 hobby,photography,hobby,swimming
 job,teacher,trait,cynical
+
 job,lawyer,job,nurse
 hobby,rock climbing,job,professor
 job,editor,hobby,magic

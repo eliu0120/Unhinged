@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_set>
 #include "RadixTree.h"
 using namespace std;
 
@@ -22,7 +23,7 @@ class PersonProfile {
         string m_name;
         string m_email;
         int m_numAttValPairs;
-        RadixTree<vector<string>> m_AttToVal;
+        RadixTree<unordered_set<string>> m_AttToVal;
         vector<AttValPair> m_attValPairs;
 };
 

@@ -23,6 +23,8 @@ bool AttributeTranslator::Load(string filename) {
         string compatible_att = "";
         string compatible_value = "";
         while (getline(file, line)) {
+            if (line == "")
+                continue;
             int pos = line.find(",");
             pos = line.find(",", pos + 1);
             source = line.substr(0, pos);

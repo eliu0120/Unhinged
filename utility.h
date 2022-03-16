@@ -14,9 +14,9 @@ bool compareEmailCounts(const EmailCount& lhs, const EmailCount& rhs);
 template <typename ValueType>
 bool compareValues(const ValueType& value, const vector<ValueType>& comparisons) {
     for (int i = 0; i < comparisons.size(); i++)
-        if (value != comparisons[i])
-            return false;
-    return true;
+        if (value == comparisons[i])
+            return true;
+    return false;
 }
 
 #endif

@@ -4,6 +4,7 @@
 #include "provided.h"
 #include <string>
 #include <vector>
+#include <unordered_set>
 using namespace std;
 
 PersonProfile::PersonProfile(string name, string email) {
@@ -25,13 +26,13 @@ string PersonProfile::GetEmail() const {
 }
 
 void PersonProfile::AddAttValPair(const AttValPair& attval) {
-    vector<string>* values = m_AttToVal.search(attval.attribute);
-    if (values != nullptr && compareValues(attval.attribute, *values))
+    unordered_set<string>* values = m_AttToVal.search(attval.attribute);
+    if (values != nullptr && (*values).find(attval.value) != (*values).end())
         return;
     else if (values != nullptr)
-        (*values).push_back(attval.value);
+        (*values).insert(attval.value);
     else {
-        vector<string> v = {attval.value};
+        unordered_set<string> v = {attval.value};
         m_AttToVal.insert(attval.attribute, v);
     }
     m_numAttValPairs++;

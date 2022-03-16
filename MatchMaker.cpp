@@ -49,7 +49,7 @@ vector<EmailCount> MatchMaker::IdentifyRankedMatches(string email, int threshold
     }
     unordered_map<string, int>::iterator it2;
     for (it2 = uniqueEmails.begin(); it2 != uniqueEmails.end(); it2++) {
-        if (it2->second >= threshold) {
+        if (it2->second >= threshold && it2->first != email) {
             EmailCount ec(it2->first, it2->second);
             ECs.push_back(ec);
         }

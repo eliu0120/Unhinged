@@ -33,8 +33,9 @@ bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
     result = rt.search("Kyle");
     if (result == nullptr)
         cout << "Nope" << endl;
-    cout << endl; 
+    cout << endl; */
 
+    /*
     PersonProfile p("Eric", "eliu0120@gmail.com");
     AttValPair attVal1("Hobby", "Gameing");
     AttValPair attVal2("Hobby", "Hiking");
@@ -69,7 +70,9 @@ bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
 
     /*
     MemberDatabase md;
-    md.LoadDatabase("testMembers.txt"); 
+    md.LoadDatabase("testMembers.txt"); */
+
+    /*
     string att = "";
     string val = "";
     cout << "Input attribute: ";
@@ -81,8 +84,12 @@ bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
     for (int i = 0; i < emails.size(); i++)
         cout << emails[i] << endl;
     cout << emails.size() << endl; */
+    
     /*
-    const PersonProfile* pp = md.GetMemberByEmail("AbFow2483@charter.net");
+    string email = "";
+    cout << "Input email: ";
+    getline(cin, email);
+    const PersonProfile* pp = md.GetMemberByEmail(email);
     cout << pp->GetEmail() << " " << pp->GetName() << endl; */
 
     /*
@@ -93,6 +100,7 @@ bool findMatches(MemberDatabase &mdb, AttributeTranslator &at);
     MatchMaker m(mdb, at);
     m.IdentifyRankedMatches("AbFow2483@charter.net", 0); */
 // } 
+
 
 int main() {
     MemberDatabase mdb;

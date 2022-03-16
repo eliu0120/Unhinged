@@ -5,6 +5,7 @@
 #include "PersonProfile.h"
 #include <fstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 MemberDatabase::MemberDatabase() {
@@ -32,7 +33,6 @@ bool MemberDatabase::LoadDatabase(string filename) {
         while (getline(file, line)) {
             if (linePos == 0) {
                 linePos++;
-                continue;
             } else if (linePos == 1) {
                 name = line;
                 linePos++;
@@ -49,20 +49,19 @@ bool MemberDatabase::LoadDatabase(string filename) {
                 AttValPair avp(attribute, value);
                 pairs.push_back(avp);
                 avpstr = structToString(avp);
-                vector<string>* values = m_pairToEmail.search(avpstr);
-                if (values != nullptr && !compareValues(email, *values)) {
-                    (*values).push_back(email);
+                unordered_set<string>* values = m_pairToEmail.search(avpstr);
+                if (values != nullptr && (*values).find(email) == (*values).end()) {
+                    (*values).insert(email);
                 } else if (values == nullptr) {
-                    vector<string> v;
-                    v.push_back(email);
-                    m_pairToEmail.insert(avpstr, v);
+                    unordered_set<string> e = {email};
+                    m_pairToEmail.insert(avpstr, e);
                 }
                 linePos++;
             } 
             if (linePos == numPairs + 4) {
                 PersonProfile* p = new PersonProfile(name, email);
-                for (int i = 0; i < pairs.size(); ) {
-                    p->AddAttValPair(pairs[i]);
+                while (pairs.size() > 0) {
+                    p->AddAttValPair(pairs[0]);
                     pairs.erase(pairs.begin());
                 }
                 m_profiles.push_back(p);
@@ -80,12 +79,16 @@ bool MemberDatabase::LoadDatabase(string filename) {
 
 vector<string> MemberDatabase::FindMatchingMembers(const AttValPair& input) const {
     string avpstr = structToString(input);
-    vector<string>* members = m_pairToEmail.search(avpstr);
+    unordered_set<string>* members = m_pairToEmail.search(avpstr);
     if (members == nullptr) {
         vector<string> emptyMap;
         return emptyMap;
     }
-    return *members;
+    unordered_set<string>::iterator it;
+    vector<string> res;
+    for (it = (*members).begin(); it != (*members).end(); it++)
+        res.push_back(*it);
+    return res;
 }
 
 const PersonProfile* MemberDatabase::GetMemberByEmail(string email) const {
